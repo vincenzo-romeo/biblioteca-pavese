@@ -10,7 +10,11 @@ export async function handler(event) {
     return { statusCode: 200, headers: cors, body: "" };
   }
   try {
-    const store = getStore("events");
+	const store = getStore({
+	  name: "events",
+	  siteID: process.env.MY_SITE_ID,
+	  token: process.env.NETLIFY_BLOBS_TOKEN,
+	});
     async function readAll() {
       const txt = await store.get("events.json", { type: "text" });
       if (!txt) return [];
