@@ -113,6 +113,7 @@ export default function App() {
   // --- Prestito libri ---
   const [formData, setFormData] = useState({
     nome: "",
+    cognome: "",
     email: "",
     telefono: "",
     autore: "",
@@ -545,22 +546,40 @@ export default function App() {
     }
   };
 
-  // --- Email prestito ---
-  const sendPrestitoEmail = (e: React.FormEvent) => {
-    e.preventDefault();
-    const { nome, email, telefono, autore, titolo } = formData;
-    if (!nome || !email || !telefono || !autore || !titolo) {
-      setMessaggio("Compila tutti i campi obbligatori.");
-      return;
-    }
-    const subject = encodeURIComponent(`Richiesta prestito - ${titolo}`);
-    const body = encodeURIComponent(
-      `Richiedente: ${nome}\\nEmail: ${email}\\nTelefono: ${telefono}\\nAutore (nome e cognome): ${autore}\\nTitolo: ${titolo}`
-    );
-    window.location.href = `mailto:pensionati.brancaleone@gmail.com?subject=${subject}&body=${body}`;
-    setMessaggio("Richiesta inviata con successo!");
-    setFormData({ nome: "", email: "", telefono: "", autore: "", titolo: "" });
-  };
+// --- Email prestito ---
+const sendPrestitoEmail = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const { nome, cognome, email, telefono, autore, titolo } = formData;
+
+  if (!nome || !cognome || !email || !telefono || !autore || !titolo) {
+    setMessaggio("Compila tutti i campi obbligatori.");
+    return;
+  }
+
+  const subject = encodeURIComponent(`Richiesta prestito - ${titolo}`);
+
+  const body = encodeURIComponent(
+    `Richiedente: ${nome} ${cognome}\n` +
+    `Email: ${email}\n` +
+    `Telefono: ${telefono}\n` +
+    `Autore (nome e cognome): ${autore}\n` +
+    `Titolo: ${titolo}`
+  );
+
+  window.location.href = `mailto:pensionati.brancaleone@gmail.com?subject=${subject}&body=${body}`;
+
+  setMessaggio("Richiesta inviata con successo!");
+
+  setFormData({
+    nome: "",
+    cognome: "",
+    email: "",
+    telefono: "",
+    autore: "",
+    titolo: "",
+  });
+};
 
   // --- Login/Logout ---
   const doLogin = (e: React.FormEvent) => {
@@ -630,7 +649,15 @@ export default function App() {
               required
               value={formData.nome}
               onChange={(e) => setFormData({ ...formData, nome: e.target.value })}
-              placeholder="Il tuo nome e cognome"
+              placeholder="Nome"
+              className="w-full p-2 border border-blue-300 rounded"
+            />
+
+            <input
+              required
+              value={formData.cognome}
+              onChange={(e) => setFormData({ ...formData, cognome: e.target.value })}
+              placeholder="Cognome"
               className="w-full p-2 border border-blue-300 rounded"
             />
             <input
@@ -669,7 +696,7 @@ export default function App() {
             </button>
           </form>
           <p className="mt-6 text-blue-800">
-            Orari di apertura: <strong>dal lunedì al sabato dalle 17:00 alle 19:30</strong> - a cura di <strong> Giovanni Leggio</strong>
+            Orari di consegna: <strong>dal lunedì al sabato dalle 17:30 alle 19:00</strong> - a cura di <strong> Giovanni Leggio</strong>
           </p>
           <p style={{ textAlign: "center", marginTop: "10px" }}>
             <a
