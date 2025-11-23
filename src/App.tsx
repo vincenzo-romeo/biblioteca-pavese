@@ -672,7 +672,12 @@ export default function App() {
             Orari di apertura: <strong>dal lunedì al sabato dalle 17:00 alle 19:30</strong> - a cura di <strong> Giovanni Leggio</strong>
           </p>
           <p style={{ textAlign: "center", marginTop: "10px" }}>
-            <a href="/PrivacyPolicy.pdf" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://bibliotecacomunale.netlify.app/privacy.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline font-bold"
+            >
               Informativa sulla privacy
             </a>
           </p>
