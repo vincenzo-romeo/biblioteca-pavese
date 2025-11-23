@@ -6,14 +6,13 @@
 [functions]
   node_bundler = "esbuild"
 
-# Serve direttamente il PDF, evitando il redirect alla SPA
+# 🔥 Permetti di accedere direttamente al PDF
 [[redirects]]
   from = "/privacy.pdf"
   to = "/privacy.pdf"
   status = 200
-  force = true
 
-# Fallback per la Single-Page Application
+# 🔥 Regola SPA (tutte le altre rotte puntano a index.html)
 [[redirects]]
   from = "/*"
   to = "/index.html"
