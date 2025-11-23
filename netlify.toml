@@ -6,13 +6,13 @@
 [functions]
   node_bundler = "esbuild"
 
-# 🔥 Permetti di accedere direttamente al PDF
+# NON reindirizzare i file statici
 [[redirects]]
   from = "/privacy.pdf"
   to = "/privacy.pdf"
   status = 200
 
-# 🔥 Regola SPA (tutte le altre rotte puntano a index.html)
+# Fallback per la SPA (React)
 [[redirects]]
   from = "/*"
   to = "/index.html"
