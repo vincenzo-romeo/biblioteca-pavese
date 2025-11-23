@@ -669,7 +669,12 @@ export default function App() {
             </button>
           </form>
           <p className="mt-6 text-blue-800">
-            Orari di apertura: <strong>dal lunedì al sabato dalle 17:00 alle 19:30</strong>
+            Orari di apertura: <strong>dal lunedì al sabato dalle 17:00 alle 19:30</strong> - a cura di <strong> Giovanni Leggio</strong>
+          </p>
+          <p style={{ textAlign: "center", marginTop: "10px" }}>
+            <a href="/PrivacyPolicy.pdf" target="_blank" rel="noopener noreferrer">
+              Informativa sulla privacy
+            </a>
           </p>
         </div>
       </section>
